@@ -32,34 +32,38 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    let mounted = true
     const supabase = createClient()
 
-    // Get initial session
     const initSession = async () => {
-      try {
-        const { data: { user } } = await supabase.auth.getUser()
-        setUser(user)
+      const { data: { user } } = await supabase.auth.getUser()
 
-        if (user) {
-          const { data: profile } = await supabase
-            .from('admin_profiles')
-            .select('*')
-            .eq('id', user.id)
-            .single()
+      if (!mounted) return
+
+      if (user) {
+        setUser(user)
+        const { data: profile } = await supabase
+          .from('admin_profiles')
+          .select('*')
+          .eq('id', user.id)
+          .single()
+
+        if (mounted) {
           setAdminProfile(profile)
         }
-      } catch (error) {
-        console.error('Error fetching session:', error)
-      } finally {
+      }
+
+      if (mounted) {
         setLoading(false)
       }
     }
 
     initSession()
 
-    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        if (!mounted) return
+
         if (event === 'SIGNED_OUT') {
           setUser(null)
           setAdminProfile(null)
@@ -70,13 +74,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             .select('*')
             .eq('id', session.user.id)
             .single()
-          setAdminProfile(profile)
+
+          if (mounted) {
+            setAdminProfile(profile)
+          }
         }
-        setLoading(false)
       }
     )
 
     return () => {
+      mounted = false
       subscription.unsubscribe()
     }
   }, [])

@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import DataTable from '@/components/admin/DataTable'
 import { StatusBadge } from '@/components/admin/FormFields'
-import { useAuth } from '@/lib/auth-context'
 
 interface PartnerLogo {
   id: string
@@ -20,7 +19,6 @@ interface PartnerLogo {
 export default function PartnersPage() {
   const [partners, setPartners] = useState<PartnerLogo[]>([])
   const [loading, setLoading] = useState(true)
-  const { user, loading: authLoading } = useAuth()
 
   const fetchPartners = async () => {
     setLoading(true)
@@ -39,10 +37,8 @@ export default function PartnersPage() {
   }
 
   useEffect(() => {
-    if (!authLoading && user) {
-      fetchPartners()
-    }
-  }, [authLoading, user])
+    fetchPartners()
+  }, [])
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this logo?')) return

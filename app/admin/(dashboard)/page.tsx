@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase'
-import { useAuth } from '@/lib/auth-context'
 import Link from 'next/link'
 
 interface DashboardStats {
@@ -30,7 +29,6 @@ export default function AdminDashboardPage() {
   const [stats, setStats] = useState<DashboardStats | null>(null)
   const [recentSubmissions, setRecentSubmissions] = useState<RecentSubmission[]>([])
   const [loading, setLoading] = useState(true)
-  const { user, loading: authLoading } = useAuth()
 
   const fetchData = async () => {
     setLoading(true)
@@ -111,10 +109,8 @@ export default function AdminDashboardPage() {
   }
 
   useEffect(() => {
-    if (!authLoading && user) {
-      fetchData()
-    }
-  }, [authLoading, user])
+    fetchData()
+  }, [])
 
   if (loading) {
     return (

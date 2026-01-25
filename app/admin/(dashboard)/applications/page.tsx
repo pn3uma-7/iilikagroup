@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase'
-import { useAuth } from '@/lib/auth-context'
 import { StatusBadge, Select, Textarea } from '@/components/admin/FormFields'
 
 interface GeneralApplication {
@@ -24,7 +23,6 @@ export default function ApplicationsPage() {
   const [selectedApp, setSelectedApp] = useState<GeneralApplication | null>(null)
   const [adminNotes, setAdminNotes] = useState('')
   const [saving, setSaving] = useState(false)
-  const { user, loading: authLoading } = useAuth()
 
   const fetchApplications = async () => {
     setLoading(true)
@@ -39,10 +37,8 @@ export default function ApplicationsPage() {
   }
 
   useEffect(() => {
-    if (!authLoading && user) {
-      fetchApplications()
-    }
-  }, [authLoading, user])
+    fetchApplications()
+  }, [])
 
   const updateStatus = async (id: string, status: string) => {
     const supabase = createClient()

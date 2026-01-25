@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import DataTable from '@/components/admin/DataTable'
 import { StatusBadge } from '@/components/admin/FormFields'
-import { useAuth } from '@/lib/auth-context'
 
 interface CaseStudy {
   id: string
@@ -21,7 +20,6 @@ interface CaseStudy {
 export default function CaseStudiesPage() {
   const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([])
   const [loading, setLoading] = useState(true)
-  const { user, loading: authLoading } = useAuth()
 
   const fetchCaseStudies = async () => {
     setLoading(true)
@@ -40,10 +38,8 @@ export default function CaseStudiesPage() {
   }
 
   useEffect(() => {
-    if (!authLoading && user) {
-      fetchCaseStudies()
-    }
-  }, [authLoading, user])
+    fetchCaseStudies()
+  }, [])
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this case study?')) return

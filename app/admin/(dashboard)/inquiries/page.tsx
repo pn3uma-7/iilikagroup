@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase'
-import { useAuth } from '@/lib/auth-context'
 import { StatusBadge, Select, Textarea } from '@/components/admin/FormFields'
 
 interface ClientInquiry {
@@ -25,7 +24,6 @@ export default function InquiriesPage() {
   const [selectedInquiry, setSelectedInquiry] = useState<ClientInquiry | null>(null)
   const [adminNotes, setAdminNotes] = useState('')
   const [saving, setSaving] = useState(false)
-  const { user, loading: authLoading } = useAuth()
 
   const fetchInquiries = async () => {
     setLoading(true)
@@ -40,10 +38,8 @@ export default function InquiriesPage() {
   }
 
   useEffect(() => {
-    if (!authLoading && user) {
-      fetchInquiries()
-    }
-  }, [authLoading, user])
+    fetchInquiries()
+  }, [])
 
   const updateStatus = async (id: string, status: string) => {
     const supabase = createClient()

@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import DataTable from '@/components/admin/DataTable'
 import { StatusBadge } from '@/components/admin/FormFields'
-import { useAuth } from '@/lib/auth-context'
 
 interface Service {
   id: string
@@ -22,7 +21,6 @@ interface Service {
 export default function ServicesPage() {
   const [services, setServices] = useState<Service[]>([])
   const [loading, setLoading] = useState(true)
-  const { user, loading: authLoading } = useAuth()
 
   const fetchServices = async () => {
     setLoading(true)
@@ -42,10 +40,8 @@ export default function ServicesPage() {
   }
 
   useEffect(() => {
-    if (!authLoading && user) {
-      fetchServices()
-    }
-  }, [authLoading, user])
+    fetchServices()
+  }, [])
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this service?')) return

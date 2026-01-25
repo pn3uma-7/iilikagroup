@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import DataTable from '@/components/admin/DataTable'
 import { StatusBadge } from '@/components/admin/FormFields'
-import { useAuth } from '@/lib/auth-context'
 
 interface Product {
   id: string
@@ -23,7 +22,6 @@ interface Product {
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
-  const { user, loading: authLoading } = useAuth()
 
   const fetchProducts = async () => {
     setLoading(true)
@@ -42,10 +40,8 @@ export default function ProductsPage() {
   }
 
   useEffect(() => {
-    if (!authLoading && user) {
-      fetchProducts()
-    }
-  }, [authLoading, user])
+    fetchProducts()
+  }, [])
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this product?')) return

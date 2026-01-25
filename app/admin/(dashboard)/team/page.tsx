@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import DataTable from '@/components/admin/DataTable'
 import { StatusBadge } from '@/components/admin/FormFields'
-import { useAuth } from '@/lib/auth-context'
 
 interface TeamMember {
   id: string
@@ -21,7 +20,6 @@ interface TeamMember {
 export default function TeamPage() {
   const [team, setTeam] = useState<TeamMember[]>([])
   const [loading, setLoading] = useState(true)
-  const { user, loading: authLoading } = useAuth()
 
   const fetchTeam = async () => {
     setLoading(true)
@@ -40,10 +38,8 @@ export default function TeamPage() {
   }
 
   useEffect(() => {
-    if (!authLoading && user) {
-      fetchTeam()
-    }
-  }, [authLoading, user])
+    fetchTeam()
+  }, [])
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this team member?')) return

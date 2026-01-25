@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import DataTable from '@/components/admin/DataTable'
 import { StatusBadge } from '@/components/admin/FormFields'
-import { useAuth } from '@/lib/auth-context'
 
 interface Testimonial {
   id: string
@@ -22,7 +21,6 @@ interface Testimonial {
 export default function TestimonialsPage() {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([])
   const [loading, setLoading] = useState(true)
-  const { user, loading: authLoading } = useAuth()
 
   const fetchTestimonials = async () => {
     setLoading(true)
@@ -41,10 +39,8 @@ export default function TestimonialsPage() {
   }
 
   useEffect(() => {
-    if (!authLoading && user) {
-      fetchTestimonials()
-    }
-  }, [authLoading, user])
+    fetchTestimonials()
+  }, [])
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this testimonial?')) return

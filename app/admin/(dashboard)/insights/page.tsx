@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import DataTable from '@/components/admin/DataTable'
 import { StatusBadge } from '@/components/admin/FormFields'
-import { useAuth } from '@/lib/auth-context'
 
 interface Insight {
   id: string
@@ -23,7 +22,6 @@ interface Insight {
 export default function InsightsPage() {
   const [insights, setInsights] = useState<Insight[]>([])
   const [loading, setLoading] = useState(true)
-  const { user, loading: authLoading } = useAuth()
 
   const fetchInsights = async () => {
     setLoading(true)
@@ -42,10 +40,8 @@ export default function InsightsPage() {
   }
 
   useEffect(() => {
-    if (!authLoading && user) {
-      fetchInsights()
-    }
-  }, [authLoading, user])
+    fetchInsights()
+  }, [])
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this post?')) return

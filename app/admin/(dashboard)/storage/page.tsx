@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase'
-import { useAuth } from '@/lib/auth-context'
 
 interface StorageFile {
   name: string
@@ -29,7 +28,6 @@ export default function StoragePage() {
   const [files, setFiles] = useState<StorageFile[]>([])
   const [loading, setLoading] = useState(true)
   const [deleting, setDeleting] = useState<string | null>(null)
-  const { user, loading: authLoading } = useAuth()
 
   const fetchBucketStats = async () => {
     setLoading(true)
@@ -56,10 +54,8 @@ export default function StoragePage() {
   }
 
   useEffect(() => {
-    if (!authLoading && user) {
-      fetchBucketStats()
-    }
-  }, [authLoading, user])
+    fetchBucketStats()
+  }, [])
 
   const fetchBucketFiles = async (bucket: string) => {
     setSelectedBucket(bucket)
