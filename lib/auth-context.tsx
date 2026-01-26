@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
-import { User } from '@supabase/supabase-js'
+import { User, Session, AuthChangeEvent } from '@supabase/supabase-js'
 import { createClient } from '@/lib/supabase'
 
 interface AdminProfile {
@@ -15,77 +15,59 @@ interface AdminProfile {
 interface AuthContextType {
   user: User | null
   adminProfile: AdminProfile | null
-  loading: boolean
   signOut: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   adminProfile: null,
-  loading: true,
   signOut: async () => {},
 })
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [adminProfile, setAdminProfile] = useState<AdminProfile | null>(null)
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    let mounted = true
     const supabase = createClient()
 
-    const initSession = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-
-      if (!mounted) return
-
-      if (user) {
-        setUser(user)
-        const { data: profile } = await supabase
+    // Get initial session - non-blocking
+    supabase.auth.getSession().then(({ data }: { data: { session: Session | null } }) => {
+      if (data.session?.user) {
+        setUser(data.session.user)
+        // Fetch profile
+        supabase
           .from('admin_profiles')
           .select('*')
-          .eq('id', user.id)
+          .eq('id', data.session.user.id)
           .single()
-
-        if (mounted) {
-          setAdminProfile(profile)
-        }
+          .then(({ data: profile }: { data: AdminProfile | null }) => {
+            if (profile) setAdminProfile(profile)
+          })
       }
+    })
 
-      if (mounted) {
-        setLoading(false)
-      }
-    }
-
-    initSession()
-
+    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        if (!mounted) return
-
+      (event: AuthChangeEvent, session: Session | null) => {
         if (event === 'SIGNED_OUT') {
           setUser(null)
           setAdminProfile(null)
         } else if (session?.user) {
           setUser(session.user)
-          const { data: profile } = await supabase
+          supabase
             .from('admin_profiles')
             .select('*')
             .eq('id', session.user.id)
             .single()
-
-          if (mounted) {
-            setAdminProfile(profile)
-          }
+            .then(({ data: profile }: { data: AdminProfile | null }) => {
+              if (profile) setAdminProfile(profile)
+            })
         }
       }
     )
 
-    return () => {
-      mounted = false
-      subscription.unsubscribe()
-    }
+    return () => subscription.unsubscribe()
   }, [])
 
   const signOut = async () => {
@@ -96,7 +78,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, adminProfile, loading, signOut }}>
+    <AuthContext.Provider value={{ user, adminProfile, signOut }}>
       {children}
     </AuthContext.Provider>
   )
