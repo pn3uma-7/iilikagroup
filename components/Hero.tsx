@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative h-[600px] lg:h-[700px] overflow-hidden">
+    <section className="relative h-screen -mt-20 overflow-hidden">
       {/* Video Background */}
       <video
         autoPlay
