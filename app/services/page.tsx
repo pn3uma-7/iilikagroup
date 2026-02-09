@@ -3,6 +3,12 @@ import Button from "@/components/ui/Button";
 import ServicesProductsCarousel from "@/components/ServicesProductsCarousel";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Services",
+  description:
+    "Comprehensive IT solutions — staffing and deployed resources, GCC enablement, and service-based project delivery for modern enterprises.",
+};
+
 export default function Services() {
   const services = [
     {

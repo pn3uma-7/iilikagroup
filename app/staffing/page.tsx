@@ -2,6 +2,13 @@ import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import ServicesProductsCarousel from "@/components/ServicesProductsCarousel";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
+
+export const metadata = {
+  title: "IT Staffing Solutions",
+  description:
+    "Expert IT staffing services — onsite, hybrid, and remote engineers. Permanent and contract hiring with pre-vetted technical talent and quick deployment.",
+};
 
 export default function Staffing() {
   const hiringProcess = [
@@ -60,6 +67,20 @@ export default function Staffing() {
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "IT Staffing & Deployed Resources",
+          description:
+            "Expert IT staffing services — onsite, hybrid, and remote engineers. Permanent and contract hiring with pre-vetted technical talent.",
+          provider: {
+            "@type": "Organization",
+            name: "IILIKA GROUPS",
+            url: "https://iilikagroups.com",
+          },
+        }}
+      />
       <section className="bg-gradient-to-b from-gray-50 to-white py-16">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">

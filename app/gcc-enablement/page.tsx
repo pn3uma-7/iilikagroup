@@ -2,6 +2,13 @@ import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import ServicesProductsCarousel from "@/components/ServicesProductsCarousel";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
+
+export const metadata = {
+  title: "GCC Enablement",
+  description:
+    "End-to-end Global Capability Center setup and enablement. From strategy and planning to talent acquisition and operational excellence.",
+};
 
 export default function GCCEnablement() {
   const setupProcess = [
@@ -44,6 +51,20 @@ export default function GCCEnablement() {
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "GCC Enablement",
+          description:
+            "End-to-end Global Capability Center setup and enablement. From strategy and planning to talent acquisition and operational excellence.",
+          provider: {
+            "@type": "Organization",
+            name: "IILIKA GROUPS",
+            url: "https://iilikagroups.com",
+          },
+        }}
+      />
       <section className="bg-gradient-to-b from-gray-50 to-white py-16">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">

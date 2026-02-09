@@ -33,12 +33,26 @@ export async function generateMetadata({ params }: ServicePageProps) {
     .single();
 
   if (!service) {
-    return { title: "Service Not Found | IILIKA GROUPS" };
+    return { title: "Service Not Found" };
   }
 
+  const title = service.seo_title || service.title;
+  const description =
+    service.seo_description || service.description?.slice(0, 160);
+
   return {
-    title: service.seo_title || `${service.title} | IILIKA GROUPS`,
-    description: service.seo_description || service.description?.slice(0, 160),
+    title,
+    description,
+    openGraph: {
+      title,
+      description: description || undefined,
+      type: "website",
+    },
+    twitter: {
+      card: "summary" as const,
+      title,
+      description: description || undefined,
+    },
   };
 }
 

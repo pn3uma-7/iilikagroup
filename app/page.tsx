@@ -3,6 +3,7 @@ import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
 
 export default function Home() {
   const services = [
@@ -28,6 +29,14 @@ export default function Home() {
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "IILIKA GROUPS",
+          url: "https://iilikagroups.com",
+        }}
+      />
       <Hero />
 
       <section className="bg-gray-50 py-16">
