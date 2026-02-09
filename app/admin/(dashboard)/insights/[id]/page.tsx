@@ -48,6 +48,7 @@ export default function InsightEditPage() {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [slugTouched, setSlugTouched] = useState(!isNew)
+  const [slugError, setSlugError] = useState<string | null>(null)
 
   const fetchAuthors = useCallback(async () => {
     try {
@@ -106,15 +107,33 @@ export default function InsightEditPage() {
 
   const generateSlug = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 
+  const checkSlugUnique = async (slug: string) => {
+    if (!slug) { setSlugError(null); return true }
+    const supabase = createClient()
+    let query = supabase.from('insights').select('id').eq('slug', slug)
+    if (!isNew) query = query.neq('id', params.id)
+    const { data } = await query
+    if (data && data.length > 0) {
+      setSlugError('This slug is already in use')
+      return false
+    }
+    setSlugError(null)
+    return true
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
     setSaving(true)
 
+    const finalSlug = form.slug || generateSlug(form.title)
+    const isUnique = await checkSlugUnique(finalSlug)
+    if (!isUnique) { setSaving(false); return }
+
     const supabase = createClient()
 
     const payload = {
-      slug: form.slug || generateSlug(form.title),
+      slug: finalSlug,
       title: form.title,
       excerpt: form.excerpt || null,
       content: form.content,
@@ -173,8 +192,9 @@ export default function InsightEditPage() {
 
         <Input label="Slug" value={form.slug} onChange={(e) => {
           setSlugTouched(true)
+          setSlugError(null)
           setForm({ ...form, slug: e.target.value })
-        }} placeholder="auto-generated-from-title" />
+        }} onBlur={() => checkSlugUnique(form.slug)} error={slugError || undefined} placeholder="auto-generated-from-title" />
 
         <Textarea label="Excerpt" value={form.excerpt} onChange={(e) => setForm({ ...form, excerpt: e.target.value })} rows={2} placeholder="Short summary for cards..." />
 
@@ -215,7 +235,7 @@ export default function InsightEditPage() {
         </div>
 
         <div className="flex items-center gap-3 pt-4 border-t">
-          <button type="submit" disabled={saving} className="px-6 py-2 bg-[#FF000E] text-white rounded hover:bg-[#9E0008] transition-colors disabled:opacity-50">
+          <button type="submit" disabled={saving || !!slugError} className="px-6 py-2 bg-[#FF000E] text-white rounded hover:bg-[#9E0008] transition-colors disabled:opacity-50">
             {saving ? 'Saving...' : isNew ? 'Create Post' : 'Save Changes'}
           </button>
           <Link href="/admin/insights" className="px-6 py-2 text-gray-700 hover:text-gray-900">Cancel</Link>
