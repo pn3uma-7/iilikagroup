@@ -46,6 +46,7 @@ export default function ServiceEditPage() {
   const [loading, setLoading] = useState(!isNew)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [slugTouched, setSlugTouched] = useState(!isNew)
 
   const fetchPillars = useCallback(async () => {
     try {
@@ -185,7 +186,10 @@ export default function ServiceEditPage() {
         <Input
           label="Title"
           value={form.title}
-          onChange={(e) => setForm({ ...form, title: e.target.value })}
+          onChange={(e) => {
+            const title = e.target.value
+            setForm({ ...form, title, ...(!slugTouched ? { slug: generateSlug(title) } : {}) })
+          }}
           required
           placeholder="Service Title"
         />
@@ -193,7 +197,10 @@ export default function ServiceEditPage() {
         <Input
           label="Slug"
           value={form.slug}
-          onChange={(e) => setForm({ ...form, slug: e.target.value })}
+          onChange={(e) => {
+            setSlugTouched(true)
+            setForm({ ...form, slug: e.target.value })
+          }}
           placeholder="auto-generated-from-title"
         />
 

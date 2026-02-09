@@ -47,6 +47,7 @@ export default function InsightEditPage() {
   const [loading, setLoading] = useState(!isNew)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [slugTouched, setSlugTouched] = useState(!isNew)
 
   const fetchAuthors = useCallback(async () => {
     try {
@@ -165,9 +166,15 @@ export default function InsightEditPage() {
       )}
 
       <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm p-6 space-y-6">
-        <Input label="Title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} required placeholder="Post title" />
+        <Input label="Title" value={form.title} onChange={(e) => {
+          const title = e.target.value
+          setForm({ ...form, title, ...(!slugTouched ? { slug: generateSlug(title) } : {}) })
+        }} required placeholder="Post title" />
 
-        <Input label="Slug" value={form.slug} onChange={(e) => setForm({ ...form, slug: e.target.value })} placeholder="auto-generated-from-title" />
+        <Input label="Slug" value={form.slug} onChange={(e) => {
+          setSlugTouched(true)
+          setForm({ ...form, slug: e.target.value })
+        }} placeholder="auto-generated-from-title" />
 
         <Textarea label="Excerpt" value={form.excerpt} onChange={(e) => setForm({ ...form, excerpt: e.target.value })} rows={2} placeholder="Short summary for cards..." />
 

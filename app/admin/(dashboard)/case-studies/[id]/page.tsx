@@ -49,6 +49,7 @@ export default function CaseStudyEditPage() {
   const [loading, setLoading] = useState(!isNew)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [slugTouched, setSlugTouched] = useState(!isNew)
 
   const fetchCaseStudy = useCallback(async () => {
     setLoading(true)
@@ -155,9 +156,15 @@ export default function CaseStudyEditPage() {
       )}
 
       <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-sm p-6 space-y-6">
-        <Input label="Title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} required placeholder="Case Study Title" />
+        <Input label="Title" value={form.title} onChange={(e) => {
+          const title = e.target.value
+          setForm({ ...form, title, ...(!slugTouched ? { slug: generateSlug(title) } : {}) })
+        }} required placeholder="Case Study Title" />
 
-        <Input label="Slug" value={form.slug} onChange={(e) => setForm({ ...form, slug: e.target.value })} placeholder="auto-generated-from-title" />
+        <Input label="Slug" value={form.slug} onChange={(e) => {
+          setSlugTouched(true)
+          setForm({ ...form, slug: e.target.value })
+        }} placeholder="auto-generated-from-title" />
 
         <div className="grid grid-cols-2 gap-4">
           <Input label="Client Name (optional)" value={form.client_name} onChange={(e) => setForm({ ...form, client_name: e.target.value })} placeholder="Can be anonymous" />
