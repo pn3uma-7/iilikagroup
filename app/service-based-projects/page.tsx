@@ -1,4 +1,3 @@
-import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import ServicesProductsCarousel from "@/components/ServicesProductsCarousel";
 import Link from "next/link";
@@ -25,19 +24,31 @@ export default function ServiceBasedProjects() {
       title: "Fixed-Scope Projects",
       description: "Well-defined deliverables with fixed timeline and budget",
       bestFor: "Clear requirements, specific outcomes",
-      icon: "📋",
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+        </svg>
+      ),
     },
     {
       title: "Time & Materials",
       description: "Flexible engagement billed on actual time and resources",
       bestFor: "Evolving requirements, ongoing development",
-      icon: "⏱️",
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
     },
     {
       title: "Retainer Model",
       description: "Dedicated team on monthly retainer for continuous delivery",
       bestFor: "Long-term partnerships, continuous improvement",
-      icon: "🔄",
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+      ),
     },
   ];
 
@@ -62,6 +73,7 @@ export default function ServiceBasedProjects() {
           src="/images/project-delivery-hero.jpg"
           alt="Service-Based Project Delivery"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />
@@ -108,7 +120,8 @@ export default function ServiceBasedProjects() {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
+              <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+              <h2 className="text-3xl md:text-4xl font-bold text-black mb-6 uppercase">
                 Complete Project Ownership
               </h2>
               <div className="space-y-4 text-[#333333] leading-relaxed">
@@ -149,6 +162,7 @@ export default function ServiceBasedProjects() {
                 src="/images/project-delivery-hero.jpg"
                 alt="Project Delivery"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -156,23 +170,24 @@ export default function ServiceBasedProjects() {
         </div>
       </section>
 
-      <section className="bg-gray-50 py-16">
+      <section className="bg-[#1a1a1a] py-16">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Engagement Models</h2>
-            <p className="text-lg text-[#333333] max-w-3xl mx-auto">
+          <div className="mb-12">
+            <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 uppercase">Engagement Models</h2>
+            <p className="text-white/60 max-w-3xl">
               Choose the model that best fits your project needs
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {engagementModels.map((model, index) => (
-              <Card key={index}>
-                <div className="text-5xl mb-4">{model.icon}</div>
-                <h3 className="text-xl font-semibold text-black mb-3">{model.title}</h3>
-                <p className="text-[#333333] mb-4 leading-relaxed">{model.description}</p>
-                <p className="text-sm text-[#FF000E] font-medium">Best for: {model.bestFor}</p>
-              </Card>
+              <div key={index} className="border border-white/10 rounded-lg p-6">
+                <div className="text-[#FF000E] mb-4">{model.icon}</div>
+                <h3 className="text-lg font-semibold text-white mb-3 uppercase tracking-wide">{model.title}</h3>
+                <p className="text-white/60 mb-4 text-sm leading-relaxed">{model.description}</p>
+                <p className="text-xs text-[#FF000E] font-medium uppercase tracking-wider">Best for: {model.bestFor}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -180,19 +195,20 @@ export default function ServiceBasedProjects() {
 
       <section className="bg-white py-16">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Technology Expertise</h2>
-            <p className="text-lg text-[#333333] max-w-3xl mx-auto">
+          <div className="mb-12">
+            <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 uppercase">Technology Expertise</h2>
+            <p className="text-[#333333] max-w-3xl">
               Full-stack capabilities across modern technology stacks
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {techStacks.map((stack, index) => (
-              <Card key={index}>
-                <h3 className="text-lg font-semibold text-black mb-2">{stack.name}</h3>
+              <div key={index} className="border border-gray-200 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-black mb-2 uppercase tracking-wide">{stack.name}</h3>
                 <p className="text-[#333333] text-sm leading-relaxed">{stack.technologies}</p>
-              </Card>
+              </div>
             ))}
           </div>
         </div>
@@ -201,25 +217,19 @@ export default function ServiceBasedProjects() {
       <ServicesProductsCarousel />
 
       <section className="bg-[#333333] text-white py-16">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Start Your Next Project</h2>
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            Let&apos;s discuss your project requirements and how our managed squads can deliver results.
-          </p>
-          <Link href="/contact">
-            <Button variant="primary" size="lg">
-              Discuss Your Project
-            </Button>
-          </Link>
-          <div className="flex items-center justify-center gap-4 mt-6">
-            <Link href="/case-studies">
-              <Button variant="outline-light" size="sm">
-                Case Studies
-              </Button>
-            </Link>
-            <Link href="/insights">
-              <Button variant="outline-light" size="sm">
-                Insights
+        <div className="container-custom">
+          <div className="max-w-2xl">
+            <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase">Start Your Next Project</h2>
+            <p className="text-white/60 mb-8">
+              Let&apos;s discuss your project requirements and how our managed squads can deliver results.
+            </p>
+            <Link href="/contact">
+              <Button variant="primary" size="lg">
+                Discuss Your Project
+                <svg className="w-5 h-5 ml-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </Button>
             </Link>
           </div>

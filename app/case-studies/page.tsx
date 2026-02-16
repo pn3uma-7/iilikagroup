@@ -51,6 +51,7 @@ export default async function CaseStudiesPage() {
           src="/images/case-studies.jpg"
           alt="IILIKA GROUPS Case Studies"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />
@@ -80,16 +81,22 @@ export default async function CaseStudiesPage() {
       </section>
 
       <section className="bg-[#333333] text-white py-16">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to be our next success story?</h2>
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            Let&apos;s discuss how we can help transform your business with the right talent and solutions.
-          </p>
-          <Link href="/contact">
-            <Button variant="primary" size="lg">
-              Start the Conversation
-            </Button>
-          </Link>
+        <div className="container-custom">
+          <div className="max-w-2xl">
+            <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase">Ready to Be Our Next Success Story?</h2>
+            <p className="text-white/60 mb-8">
+              Let&apos;s discuss how we can help transform your business with the right talent and solutions.
+            </p>
+            <Link href="/contact">
+              <Button variant="primary" size="lg">
+                Start the Conversation
+                <svg className="w-5 h-5 ml-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </>

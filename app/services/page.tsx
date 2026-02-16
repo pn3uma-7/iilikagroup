@@ -6,7 +6,7 @@ import Image from "next/image";
 export const metadata = {
   title: "Services",
   description:
-    "Comprehensive IT solutions — staffing and deployed resources, GCC enablement, and service-based project delivery for modern enterprises.",
+    "Comprehensive IT solutions — staffing and deployed resources, service-based project delivery, and GCC enablement for modern enterprises.",
 };
 
 export default function Services() {
@@ -27,21 +27,6 @@ export default function Services() {
       image: "/images/staffing-hero.jpg",
     },
     {
-      id: "gcc",
-      title: "GCC Enablement",
-      description: "End-to-end GCC setup and scaling support",
-      features: [
-        "GCC setup and infrastructure",
-        "Talent acquisition and onboarding",
-        "Infrastructure partner network",
-        "Transition and scaling support",
-        "Ongoing operational support",
-      ],
-      cta: "Setup Your GCC",
-      link: "/gcc-enablement",
-      image: "/images/gcc-hero.jpg",
-    },
-    {
       id: "projects",
       title: "Service-based Project Delivery",
       description: "Complete project ownership and delivery",
@@ -56,6 +41,21 @@ export default function Services() {
       link: "/service-based-projects",
       image: "/images/project-delivery-hero.jpg",
     },
+    {
+      id: "gcc",
+      title: "GCC Enablement",
+      description: "End-to-end GCC setup and scaling support",
+      features: [
+        "GCC setup and infrastructure",
+        "Talent acquisition and onboarding",
+        "Infrastructure partner network",
+        "Transition and scaling support",
+        "Ongoing operational support",
+      ],
+      cta: "Setup Your GCC",
+      link: "/gcc-enablement",
+      image: "/images/gcc-hero.jpg",
+    },
   ];
 
   return (
@@ -65,6 +65,7 @@ export default function Services() {
           src="/images/services-hero.jpg"
           alt="IILIKA GROUPS Services"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />
@@ -74,7 +75,7 @@ export default function Services() {
             <div className="max-w-3xl space-y-6">
               <div className="w-12 h-1 bg-[#FF000E]" />
               <p className="text-sm md:text-base uppercase tracking-[0.2em] text-white/80 font-medium">
-                Staffing &middot; GCC Enablement &middot; Project Delivery
+                Staffing &middot; Project Delivery &middot; GCC Enablement
               </p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[0.95] uppercase">
                 Our Services
@@ -118,7 +119,8 @@ export default function Services() {
               }`}
             >
               <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">{service.title}</h2>
+                <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+                <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 uppercase">{service.title}</h2>
                 <p className="text-lg text-[#333333] mb-6 leading-relaxed">{service.description}</p>
                 <ul className="space-y-3 mb-8">
                   {service.features.map((feature, idx) => (
@@ -147,6 +149,7 @@ export default function Services() {
                   src={service.image}
                   alt={service.title}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />
               </div>
@@ -158,25 +161,19 @@ export default function Services() {
       <ServicesProductsCarousel />
 
       <section className="bg-[#333333] text-white py-16">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Get Started?</h2>
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            Let&apos;s discuss how we can help you with staffing, GCC enablement, or project delivery.
-          </p>
-          <Link href="/contact">
-            <Button variant="primary" size="lg">
-              Get in Touch
-            </Button>
-          </Link>
-          <div className="flex items-center justify-center gap-4 mt-6">
-            <Link href="/case-studies">
-              <Button variant="outline-light" size="sm">
-                Case Studies
-              </Button>
-            </Link>
-            <Link href="/insights">
-              <Button variant="outline-light" size="sm">
-                Insights
+        <div className="container-custom">
+          <div className="max-w-2xl">
+            <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase">Ready to Get Started?</h2>
+            <p className="text-white/60 mb-8">
+              Let&apos;s discuss how we can help you with staffing, project delivery, or GCC enablement.
+            </p>
+            <Link href="/contact">
+              <Button variant="primary" size="lg">
+                Get in Touch
+                <svg className="w-5 h-5 ml-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </Button>
             </Link>
           </div>

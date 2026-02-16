@@ -25,13 +25,13 @@ export default function Hero() {
             {/* Red accent bar */}
             <div className="w-12 h-1 bg-[#FF000E]" />
             <p className="text-sm md:text-base uppercase tracking-[0.2em] text-white/80 font-medium">
-              Staffing &middot; GCC Enablement &middot; Project Delivery
+              Staffing &middot; Project Delivery &middot; GCC Enablement
             </p>
             <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[0.95] uppercase">
               Building teams and GCCs that deliver
             </h1>
             <p className="text-base md:text-lg text-white/80 uppercase tracking-wide">
-              Deployed staffing, GCC setup &amp; scaling, and project-based delivery for modern enterprises
+              Deployed staffing, project-based delivery, and GCC setup &amp; scaling for modern enterprises
             </p>
             <div className="pt-4">
               <Link href="/services">

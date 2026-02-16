@@ -108,12 +108,60 @@ export default function Careers() {
   }
 
   const benefits = [
-    { icon: '💰', title: 'Competitive Salary', description: 'Market-leading compensation packages' },
-    { icon: '🏥', title: 'Health Insurance', description: 'Comprehensive coverage for you and family' },
-    { icon: '🌴', title: 'Flexible Work', description: 'Remote and hybrid work options' },
-    { icon: '📚', title: 'Learning & Development', description: 'Training and certification support' },
-    { icon: '🚀', title: 'Career Growth', description: 'Clear progression paths and mentorship' },
-    { icon: '⚖️', title: 'Work-Life Balance', description: 'Flexible hours and time-off policies' },
+    {
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      title: 'Competitive Salary',
+      description: 'Market-leading compensation packages',
+    },
+    {
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      ),
+      title: 'Health Insurance',
+      description: 'Comprehensive coverage for you and family',
+    },
+    {
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      title: 'Flexible Work',
+      description: 'Remote and hybrid work options',
+    },
+    {
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+      ),
+      title: 'Learning & Development',
+      description: 'Training and certification support',
+    },
+    {
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+      ),
+      title: 'Career Growth',
+      description: 'Clear progression paths and mentorship',
+    },
+    {
+      icon: (
+        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      title: 'Work-Life Balance',
+      description: 'Flexible hours and time-off policies',
+    },
   ]
 
   return (
@@ -124,6 +172,7 @@ export default function Careers() {
           src="/images/careers-hero.jpg"
           alt="Careers at IILIKA GROUPS"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />
@@ -149,9 +198,10 @@ export default function Careers() {
       {/* Current Openings */}
       <section className="bg-white py-16">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Current Openings</h2>
-            <p className="text-lg text-[#333333] max-w-3xl mx-auto">
+          <div className="mb-12">
+            <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 uppercase">Current Openings</h2>
+            <p className="text-[#333333] max-w-3xl">
               Join our team of talented professionals
             </p>
           </div>
@@ -264,41 +314,48 @@ export default function Careers() {
       </section>
 
       {/* Why Work With Us */}
-      <section className="bg-gray-50 py-16">
+      <section className="bg-[#1a1a1a] py-16">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Why Work With Us</h2>
-            <p className="text-lg text-[#333333] max-w-3xl mx-auto">
+          <div className="mb-12">
+            <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 uppercase">Why Work With Us</h2>
+            <p className="text-white/60 max-w-3xl">
               Benefits and perks that make a difference
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((benefit, index) => (
-              <Card key={index} className="text-center">
-                <div className="text-5xl mb-4">{benefit.icon}</div>
-                <h3 className="text-lg font-semibold text-black mb-2">{benefit.title}</h3>
-                <p className="text-[#333333] text-sm leading-relaxed">{benefit.description}</p>
-              </Card>
+              <div key={index} className="border border-white/10 rounded-lg p-6">
+                <div className="text-[#FF000E] mb-4">{benefit.icon}</div>
+                <h3 className="text-lg font-semibold text-white mb-2 uppercase tracking-wide">{benefit.title}</h3>
+                <p className="text-white/60 text-sm leading-relaxed">{benefit.description}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* General Application CTA */}
-      <section className="bg-white py-16">
+      <section className="bg-[#333333] py-16">
         <div className="container-custom">
-          <Card className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-black mb-4">
+          <div className="max-w-2xl">
+            <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 uppercase">
               Don&apos;t See a Perfect Match?
             </h2>
-            <p className="text-[#333333] mb-6">
+            <p className="text-white/60 mb-8">
               Submit your profile and we&apos;ll reach out when opportunities arise.
             </p>
             <Link href="/contact">
-              <Button variant="primary">Submit General Application</Button>
+              <Button variant="primary" size="lg">
+                Submit General Application
+                <svg className="w-5 h-5 ml-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Button>
             </Link>
-          </Card>
+          </div>
         </div>
       </section>
 

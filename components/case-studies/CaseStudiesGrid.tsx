@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
@@ -38,7 +37,7 @@ export default function CaseStudiesGrid({ caseStudies }: { caseStudies: CaseStud
   return (
     <>
       <div className="mb-8">
-        <div className="relative max-w-md mx-auto">
+        <div className="relative max-w-md">
           <svg
             className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
             fill="none"
@@ -63,9 +62,9 @@ export default function CaseStudiesGrid({ caseStudies }: { caseStudies: CaseStud
       </div>
 
       {filteredStudies.length > 0 ? (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {filteredStudies.map((study) => (
-            <Card key={study.id} className="flex flex-col h-full">
+            <div key={study.id} className="border border-gray-200 rounded-lg p-6 flex flex-col h-full">
               <div className="flex flex-col md:flex-row gap-6">
                 {study.thumbnail_url && (
                   <div className="relative w-full md:w-48 h-32 flex-shrink-0 rounded-lg overflow-hidden">
@@ -73,17 +72,18 @@ export default function CaseStudiesGrid({ caseStudies }: { caseStudies: CaseStud
                       src={study.thumbnail_url}
                       alt={study.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 192px"
                       className="object-cover"
                     />
                   </div>
                 )}
                 <div className="flex-grow">
                   {study.industry && (
-                    <span className="inline-block text-xs px-2 py-1 bg-[#FF000E]/10 text-[#FF000E] rounded mb-2">
+                    <span className="inline-block text-xs px-2 py-1 bg-[#FF000E]/10 text-[#FF000E] rounded mb-2 uppercase tracking-wider font-medium">
                       {study.industry}
                     </span>
                   )}
-                  <h2 className="text-xl font-semibold text-black mb-2">
+                  <h2 className="text-xl font-semibold text-black mb-2 uppercase tracking-wide">
                     {study.title}
                   </h2>
                   {study.client_name && (
@@ -94,13 +94,13 @@ export default function CaseStudiesGrid({ caseStudies }: { caseStudies: CaseStud
                 </div>
               </div>
 
-              <p className="text-[#333333] mt-4 mb-4 line-clamp-3">
+              <p className="text-[#333333] text-sm leading-relaxed mt-4 mb-4 line-clamp-3">
                 {study.challenge}
               </p>
 
               {study.results && study.results.length > 0 && (
                 <div className="mb-4">
-                  <p className="text-sm font-medium text-black mb-2">Key Results:</p>
+                  <p className="text-sm font-medium text-black mb-2 uppercase tracking-wide">Key Results:</p>
                   <ul className="text-sm text-[#333333] space-y-1">
                     {study.results.slice(0, 3).map((result, index) => (
                       <li key={index} className="flex items-start gap-2">
@@ -130,20 +130,23 @@ export default function CaseStudiesGrid({ caseStudies }: { caseStudies: CaseStud
               <Link href={`/case-studies/${study.slug}`} className="mt-auto">
                 <Button variant="outline" size="sm" className="w-full">
                   Read Full Case Study
+                  <svg className="w-4 h-4 ml-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </Button>
               </Link>
-            </Card>
+            </div>
           ))}
         </div>
       ) : searchQuery.trim() ? (
-        <div className="text-center py-16">
+        <div className="py-16">
           <p className="text-xl text-[#333333] mb-4">
             No case studies match &ldquo;{searchQuery}&rdquo;
           </p>
           <p className="text-[#333333]">Try a different search term.</p>
         </div>
       ) : (
-        <div className="text-center py-16">
+        <div className="py-16">
           <p className="text-xl text-[#333333] mb-4">No case studies published yet.</p>
           <p className="text-[#333333]">Check back soon for client success stories.</p>
         </div>

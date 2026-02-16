@@ -246,6 +246,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
                       src={typedInsight.author.photo_url}
                       alt={typedInsight.author.name}
                       fill
+                      sizes="48px"
                       className="object-cover"
                     />
                   </div>
@@ -279,6 +280,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
                   src={typedInsight.cover_image_url}
                   alt={typedInsight.title}
                   fill
+                  sizes="(max-width: 896px) 100vw, 896px"
                   className="object-cover"
                   priority
                 />
@@ -306,6 +308,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
                         src={typedInsight.author.photo_url}
                         alt={typedInsight.author.name}
                         fill
+                        sizes="64px"
                         className="object-cover"
                       />
                     </div>

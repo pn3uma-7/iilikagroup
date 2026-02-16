@@ -7,8 +7,8 @@ import { usePathname } from "next/navigation";
 
 const serviceSubLinks = [
   { name: "Staffing Solutions", href: "/staffing" },
-  { name: "GCC Enablement", href: "/gcc-enablement" },
   { name: "Project Delivery", href: "/service-based-projects" },
+  { name: "GCC Enablement", href: "/gcc-enablement" },
 ];
 
 const servicePaths = ["/services", "/staffing", "/gcc-enablement", "/service-based-projects"];

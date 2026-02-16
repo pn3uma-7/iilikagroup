@@ -69,6 +69,7 @@ export default async function InsightsPage() {
           src="/images/insights-hero.jpg"
           alt="IILIKA GROUPS Insights"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />

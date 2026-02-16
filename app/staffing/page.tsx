@@ -1,4 +1,3 @@
-import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import ServicesProductsCarousel from "@/components/ServicesProductsCarousel";
 import Link from "next/link";
@@ -87,6 +86,7 @@ export default function Staffing() {
           src="/images/staffing-hero.jpg"
           alt="IT Staffing Solutions"
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />
@@ -133,7 +133,8 @@ export default function Staffing() {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">
+              <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+              <h2 className="text-3xl md:text-4xl font-bold text-black mb-6 uppercase">
                 The Right Talent, Fast
               </h2>
               <div className="space-y-4 text-[#333333] leading-relaxed">
@@ -174,6 +175,7 @@ export default function Staffing() {
                 src="/images/staffing-hero.jpg"
                 alt="IT Staffing"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -181,22 +183,23 @@ export default function Staffing() {
         </div>
       </section>
 
-      <section className="bg-gray-50 py-16">
+      <section className="bg-[#1a1a1a] py-16">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Our Hiring Process</h2>
-            <p className="text-lg text-[#333333] max-w-3xl mx-auto">
+          <div className="mb-12">
+            <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 uppercase">Our Hiring Process</h2>
+            <p className="text-white/60 max-w-3xl">
               A streamlined four-step process to get the right talent on your team
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {hiringProcess.map((phase, index) => (
-              <Card key={index} className="relative">
-                <div className="text-5xl font-bold text-[#FF000E] mb-4 opacity-20">{phase.step}</div>
-                <h3 className="text-xl font-semibold text-black mb-3">{phase.title}</h3>
-                <p className="text-[#333333] leading-relaxed">{phase.description}</p>
-              </Card>
+              <div key={index} className="border border-white/10 rounded-lg p-6">
+                <div className="text-4xl font-bold text-[#FF000E] mb-4 opacity-30">{phase.step}</div>
+                <h3 className="text-lg font-semibold text-white mb-3 uppercase tracking-wide">{phase.title}</h3>
+                <p className="text-white/60 text-sm leading-relaxed">{phase.description}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -204,20 +207,21 @@ export default function Staffing() {
 
       <section className="bg-white py-16">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Engagement Models</h2>
-            <p className="text-lg text-[#333333] max-w-3xl mx-auto">
+          <div className="mb-12">
+            <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 uppercase">Engagement Models</h2>
+            <p className="text-[#333333] max-w-3xl">
               Flexible staffing models to match your needs
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {engagementModels.map((model, index) => (
-              <Card key={index}>
-                <h3 className="text-xl font-semibold text-black mb-3">{model.title}</h3>
-                <p className="text-[#333333] mb-4 leading-relaxed">{model.description}</p>
-                <p className="text-sm text-[#FF000E] font-medium">Best for: {model.bestFor}</p>
-              </Card>
+              <div key={index} className="border border-gray-200 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-black mb-3 uppercase tracking-wide">{model.title}</h3>
+                <p className="text-[#333333] mb-4 text-sm leading-relaxed">{model.description}</p>
+                <p className="text-xs text-[#FF000E] font-medium uppercase tracking-wider">Best for: {model.bestFor}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -225,14 +229,15 @@ export default function Staffing() {
 
       <section className="bg-gray-50 py-16">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Roles We Fill</h2>
-            <p className="text-lg text-[#333333] max-w-3xl mx-auto">
+          <div className="mb-12">
+            <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 uppercase">Roles We Fill</h2>
+            <p className="text-[#333333] max-w-3xl">
               Technical talent across the full stack
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl">
             {roles.map((role, index) => (
               <div key={index} className="flex items-center gap-3 p-3">
                 <svg
@@ -253,10 +258,11 @@ export default function Staffing() {
         </div>
       </section>
 
-      <section className="bg-white py-16">
+      <section className="bg-[#1a1a1a] py-16">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Key Metrics</h2>
+          <div className="mb-12">
+            <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 uppercase">Key Metrics</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -266,10 +272,10 @@ export default function Staffing() {
               { metric: "95%", label: "Client Retention Rate" },
               { metric: "50+", label: "Enterprise Clients" },
             ].map((item, index) => (
-              <Card key={index} className="text-center">
+              <div key={index} className="text-center">
                 <div className="text-4xl font-bold text-[#FF000E] mb-2">{item.metric}</div>
-                <div className="text-[#333333] font-medium">{item.label}</div>
-              </Card>
+                <div className="text-white/60 text-sm font-medium uppercase tracking-wider">{item.label}</div>
+              </div>
             ))}
           </div>
         </div>
@@ -278,25 +284,19 @@ export default function Staffing() {
       <ServicesProductsCarousel />
 
       <section className="bg-[#333333] text-white py-16">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Build Your Team?</h2>
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            Tell us about your hiring needs and we&apos;ll connect you with the right talent.
-          </p>
-          <Link href="/contact">
-            <Button variant="primary" size="lg">
-              Hire Talent Now
-            </Button>
-          </Link>
-          <div className="flex items-center justify-center gap-4 mt-6">
-            <Link href="/case-studies">
-              <Button variant="outline-light" size="sm">
-                Case Studies
-              </Button>
-            </Link>
-            <Link href="/insights">
-              <Button variant="outline-light" size="sm">
-                Insights
+        <div className="container-custom">
+          <div className="max-w-2xl">
+            <div className="w-12 h-1 bg-[#FF000E] mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 uppercase">Ready to Build Your Team?</h2>
+            <p className="text-white/60 mb-8">
+              Tell us about your hiring needs and we&apos;ll connect you with the right talent.
+            </p>
+            <Link href="/contact">
+              <Button variant="primary" size="lg">
+                Hire Talent Now
+                <svg className="w-5 h-5 ml-2 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </Button>
             </Link>
           </div>

@@ -15,13 +15,13 @@ export default function Footer() {
               <Image
                 src="/images/iilika-groups.svg"
                 alt="IILIKA GROUPS"
-                width={180}
-                height={40}
-                className="h-10 w-auto brightness-0 invert"
+                width={260}
+                height={60}
+                className="h-18 w-auto brightness-0 invert"
               />
             </Link>
             <p className="text-white/60 leading-relaxed max-w-md">
-              Building teams and GCCs that deliver. Deployed staffing, GCC setup & scaling, and project-based delivery for modern enterprises.
+              Building teams and GCCs that deliver. Deployed staffing, project-based delivery, and GCC setup & scaling for modern enterprises.
             </p>
             <div className="flex items-center gap-6 text-sm text-white/40">
               <span>Pune, Maharashtra</span>
@@ -40,13 +40,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/gcc-enablement" className="text-sm text-white/70 hover:text-[#FF000E] transition-colors">
-                  GCC Enablement
+                <Link href="/service-based-projects" className="text-sm text-white/70 hover:text-[#FF000E] transition-colors">
+                  Project Delivery
                 </Link>
               </li>
               <li>
-                <Link href="/service-based-projects" className="text-sm text-white/70 hover:text-[#FF000E] transition-colors">
-                  Project Delivery
+                <Link href="/gcc-enablement" className="text-sm text-white/70 hover:text-[#FF000E] transition-colors">
+                  GCC Enablement
                 </Link>
               </li>
             </ul>

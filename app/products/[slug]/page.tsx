@@ -214,6 +214,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   src={typedProduct.image_url}
                   alt={typedProduct.title}
                   fill
+                  sizes="(max-width: 896px) 100vw, 896px"
                   className="object-cover"
                   priority
                 />

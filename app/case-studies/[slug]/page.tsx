@@ -210,6 +210,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                   src={typedCaseStudy.thumbnail_url}
                   alt={typedCaseStudy.title}
                   fill
+                  sizes="(max-width: 896px) 100vw, 896px"
                   className="object-cover"
                   priority
                 />
