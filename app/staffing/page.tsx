@@ -2,6 +2,7 @@ import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import ServicesProductsCarousel from "@/components/ServicesProductsCarousel";
 import Link from "next/link";
+import Image from "next/image";
 import { JsonLd } from "@/components/JsonLd";
 
 export const metadata = {
@@ -81,15 +82,49 @@ export default function Staffing() {
           },
         }}
       />
-      <section className="bg-gradient-to-b from-gray-50 to-white py-16">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-black mb-6">
-              Staffing & Deployed Resources
-            </h1>
-            <p className="text-xl text-[#333333] leading-relaxed">
-              Pre-vetted IT professionals ready to join your team — onsite, hybrid, or remote
-            </p>
+      <section className="relative h-[70vh] min-h-[500px] -mt-20 overflow-hidden">
+        <Image
+          src="/images/staffing-hero.jpg"
+          alt="IT Staffing Solutions"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative z-10 h-full flex items-end pb-20 md:items-center md:pb-0">
+          <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-24">
+            <div className="max-w-3xl space-y-6">
+              <div className="w-12 h-1 bg-[#FF000E]" />
+              <p className="text-sm md:text-base uppercase tracking-[0.2em] text-white/80 font-medium">
+                Contract &middot; Permanent &middot; Deployed
+              </p>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[0.95] uppercase">
+                Staffing & Deployed Resources
+              </h1>
+              <p className="text-base md:text-lg text-white/80 uppercase tracking-wide">
+                Pre-vetted IT professionals ready to join your team — onsite, hybrid, or remote
+              </p>
+              <div className="pt-4">
+                <Link href="/contact">
+                  <Button variant="primary" size="lg">
+                    Hire Talent
+                    <svg
+                      className="w-5 h-5 ml-2 inline-block"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -134,7 +169,14 @@ export default function Staffing() {
                 ))}
               </ul>
             </div>
-            <div className="bg-gradient-to-br from-[#FF000E] to-[#9E0008] h-[400px] rounded-lg shadow-xl"></div>
+            <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
+              <Image
+                src="/images/staffing-hero.jpg"
+                alt="IT Staffing"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>

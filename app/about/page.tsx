@@ -1,6 +1,8 @@
 import Card from "@/components/ui/Card";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import Image from "next/image";
+import Link from "next/link";
+import Button from "@/components/ui/Button";
 
 export const metadata = {
   title: "About Us",
@@ -80,13 +82,49 @@ export default async function About() {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-gray-50 to-white py-16">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-black mb-6">About IILIKA GROUPS</h1>
-            <p className="text-xl text-[#333333] leading-relaxed">
-              Your trusted partner for IT staffing, GCC enablement, and service-based project delivery
-            </p>
+      <section className="relative h-[70vh] min-h-[500px] -mt-20 overflow-hidden">
+        <Image
+          src="/images/about-hero.jpg"
+          alt="About IILIKA GROUPS"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative z-10 h-full flex items-end pb-20 md:items-center md:pb-0">
+          <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-24">
+            <div className="max-w-3xl space-y-6">
+              <div className="w-12 h-1 bg-[#FF000E]" />
+              <p className="text-sm md:text-base uppercase tracking-[0.2em] text-white/80 font-medium">
+                Our Story &middot; Our Values &middot; Our Team
+              </p>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[0.95] uppercase">
+                About IILIKA GROUPS
+              </h1>
+              <p className="text-base md:text-lg text-white/80 uppercase tracking-wide">
+                Your trusted partner for IT staffing, GCC enablement, and service-based project delivery
+              </p>
+              <div className="pt-4">
+                <Link href="/contact">
+                  <Button variant="primary" size="lg">
+                    Get in Touch
+                    <svg
+                      className="w-5 h-5 ml-2 inline-block"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -98,7 +136,7 @@ export default async function About() {
               <h2 className="text-3xl md:text-4xl font-bold text-black mb-6">Our Story</h2>
               <div className="space-y-4 text-[#333333] leading-relaxed">
                 <p>
-                  IILIKA GROUPS was founded with a vision to bridge the gap between enterprise talent needs and skilled IT professionals. Based in Lohegaon, Pune, we've grown into a comprehensive technology services provider.
+                  IILIKA GROUPS was founded with a vision to bridge the gap between enterprise talent needs and skilled IT professionals. Based in Pune, Maharashtra, we've grown into a comprehensive technology services provider.
                 </p>
                 <p>
                   We specialize in three core areas: IT staffing and deployed resources, GCC (Global Capability Center) enablement, and service-based project delivery. Our approach combines deep technical expertise with a commitment to understanding our clients' unique business challenges.
@@ -108,7 +146,14 @@ export default async function About() {
                 </p>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-[#FF000E] to-[#9E0008] h-[400px] rounded-lg shadow-xl"></div>
+            <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
+              <Image
+                src="/images/about-hero.jpg"
+                alt="About IILIKA GROUPS"
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -245,13 +290,26 @@ export default async function About() {
             <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">Our Presence</h2>
           </div>
 
-          <div className="max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             <Card className="text-center">
-              <h3 className="text-2xl font-semibold text-black mb-4">Headquarters</h3>
-              <p className="text-lg text-[#333333] mb-2">Lohegaon, Pune, India</p>
-              <p className="text-[#333333]">
-                Strategically located to serve clients across India and globally
-              </p>
+              <div className="text-4xl mb-4">
+                <svg className="w-10 h-10 mx-auto text-[#FF000E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-black mb-2">Pune, Maharashtra</h3>
+              <p className="text-[#333333] text-sm">Headquarters</p>
+            </Card>
+            <Card className="text-center">
+              <div className="text-4xl mb-4">
+                <svg className="w-10 h-10 mx-auto text-[#FF000E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-black mb-2">Nashik, Maharashtra</h3>
+              <p className="text-[#333333] text-sm">Regional Office</p>
             </Card>
           </div>
         </div>

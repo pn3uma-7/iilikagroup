@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import Link from "next/link";
+import Image from "next/image";
 import CaseStudiesGrid from "@/components/case-studies/CaseStudiesGrid";
 
 // Disable caching to always fetch fresh data
@@ -45,13 +46,29 @@ export default async function CaseStudiesPage() {
 
   return (
     <>
-      <section className="bg-gradient-to-b from-gray-50 to-white py-16">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-black mb-6">Case Studies</h1>
-            <p className="text-xl text-[#333333] leading-relaxed">
-              Real results from real partnerships. See how we&apos;ve helped enterprises succeed.
-            </p>
+      <section className="relative h-[70vh] min-h-[500px] -mt-20 overflow-hidden">
+        <Image
+          src="/images/case-studies.jpg"
+          alt="IILIKA GROUPS Case Studies"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative z-10 h-full flex items-end pb-20 md:items-center md:pb-0">
+          <div className="w-full px-6 sm:px-10 lg:px-16 xl:px-24">
+            <div className="max-w-3xl space-y-6">
+              <div className="w-12 h-1 bg-[#FF000E]" />
+              <p className="text-sm md:text-base uppercase tracking-[0.2em] text-white/80 font-medium">
+                Results &middot; Partnerships &middot; Success
+              </p>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[0.95] uppercase">
+                Case Studies
+              </h1>
+              <p className="text-base md:text-lg text-white/80 uppercase tracking-wide">
+                Real results from real partnerships. See how we&apos;ve helped enterprises succeed.
+              </p>
+            </div>
           </div>
         </div>
       </section>
